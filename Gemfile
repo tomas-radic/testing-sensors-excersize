@@ -30,7 +30,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'pry', '~> 0.12.2'
 gem 'attr_extras'
-gem 'rails-patterns'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

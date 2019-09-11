@@ -21,7 +21,7 @@ describe UpdateTemperatureSensorStanding do
     it 'Sets "ultra-precise" value to standings_of_sensors for given sensor' do
       expect(ValuesStatistics).to receive(:call)
           .with(sensor_measurements)
-          .and_return(OpenStruct.new(result: { average: 25.3, maximum_deviation: 2.9 }))
+          .and_return(OpenStruct.new({ average: 25.3, maximum_deviation: 2.9 }))
 
       service
 
@@ -33,7 +33,7 @@ describe UpdateTemperatureSensorStanding do
     it 'Sets "very-precise" value to standings_of_sensors for given sensor' do
       expect(ValuesStatistics).to receive(:call)
           .with(sensor_measurements)
-          .and_return(OpenStruct.new(result: { average: 25.3, maximum_deviation: 4.9 }))
+          .and_return(OpenStruct.new({ average: 25.3, maximum_deviation: 4.9 }))
 
       service
 
@@ -46,7 +46,7 @@ describe UpdateTemperatureSensorStanding do
       it 'Sets "precise" value to standings_of_sensors for given sensor' do
         expect(ValuesStatistics).to receive(:call)
             .with(sensor_measurements)
-            .and_return(OpenStruct.new(result: { average: 25.2, maximum_deviation: 1.0 }))
+            .and_return(OpenStruct.new({ average: 25.2, maximum_deviation: 1.0 }))
 
         service
 
@@ -58,7 +58,7 @@ describe UpdateTemperatureSensorStanding do
       it 'Sets "precise" value to standings_of_sensors for given sensor' do
         expect(ValuesStatistics).to receive(:call)
             .with(sensor_measurements)
-            .and_return(OpenStruct.new(result: { average: 25.8, maximum_deviation: 5.1 }))
+            .and_return(OpenStruct.new({ average: 25.8, maximum_deviation: 5.1 }))
 
         service
 
@@ -75,7 +75,7 @@ describe UpdateTemperatureSensorStanding do
     it 'Updates the record for the sensor in standings_of_sensors' do
       expect(ValuesStatistics).to receive(:call)
           .with(sensor_measurements)
-          .and_return(OpenStruct.new(result: { average: 25.8, maximum_deviation: 4.9 }))
+          .and_return(OpenStruct.new({ average: 25.8, maximum_deviation: 4.9 }))
 
       service
 
@@ -91,7 +91,7 @@ describe UpdateTemperatureSensorStanding do
     it 'Does not update the record for the sensor in standings_of_sensors' do
       expect(ValuesStatistics).to receive(:call)
           .with(sensor_measurements)
-          .and_return(OpenStruct.new(result: { average: 25.8, maximum_deviation: 1.9 }))
+          .and_return(OpenStruct.new({ average: 25.8, maximum_deviation: 1.9 }))
 
       service
 

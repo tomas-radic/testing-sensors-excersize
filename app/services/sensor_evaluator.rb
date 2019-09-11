@@ -1,9 +1,13 @@
-class SensorEvaluator < Patterns::Service
+class SensorEvaluator
   pattr_initialize :input
 
   def call
-    process_input
-    standings_of_sensors
+    begin
+      process_input
+      puts standings_of_sensors.to_s
+    rescue InvalidInput
+      puts 'Input is invalid.'
+    end
   end
 
   private

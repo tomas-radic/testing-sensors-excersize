@@ -1,4 +1,4 @@
-class UpdateMonoxideSensorStanding < Patterns::Service
+class UpdateMonoxideSensorStanding < ApplicationService
   pattr_initialize  :sensor,
                     :sensor_measurements,
                     :reference_ppm,

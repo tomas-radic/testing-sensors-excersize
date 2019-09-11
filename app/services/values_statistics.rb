@@ -1,4 +1,4 @@
-class ValuesStatistics < Patterns::Service
+class ValuesStatistics < ApplicationService
   pattr_initialize :values
 
   def call

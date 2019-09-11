@@ -1,4 +1,4 @@
-class UpdateSensorStanding < Patterns::Service
+class UpdateSensorStanding < ApplicationService
   pattr_initialize  :sensor,
                     :sensor_measurements,
                     :reference_values,

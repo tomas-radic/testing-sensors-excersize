@@ -1,4 +1,4 @@
-class UpdateHumiditySensorStanding < Patterns::Service
+class UpdateHumiditySensorStanding < ApplicationService
   pattr_initialize  :sensor,
                     :sensor_measurements,
                     :reference_humidity,

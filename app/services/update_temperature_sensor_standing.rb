@@ -1,4 +1,4 @@
-class UpdateTemperatureSensorStanding < Patterns::Service
+class UpdateTemperatureSensorStanding < ApplicationService
   pattr_initialize  :sensor,
                     :sensor_measurements,
                     :reference_temperature,
@@ -28,7 +28,6 @@ class UpdateTemperatureSensorStanding < Patterns::Service
         mean <= 0.5 &&
         maximum_deviation < 3.0
       QUALITY_LEVELS[0]
-
     elsif previous_sensor_standing_number <= 1 &&
         mean <= 0.5 && maximum_deviation <= 5.0
       QUALITY_LEVELS[1]
@@ -52,6 +51,6 @@ class UpdateTemperatureSensorStanding < Patterns::Service
   end
 
   def statistics
-    @statistics ||= ValuesStatistics.call(sensor_measurements).result
+    @statistics ||= ValuesStatistics.call(sensor_measurements)
   end
 end

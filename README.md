@@ -12,7 +12,7 @@ As a developer, your task is to process the log files and automate the quality c
 
 An example log looks like the following. The first line means that the room was held at a constant 70 degrees, 45% relative humidity with 6 ppm carbon monoxide. Subsequent lines either identify a sensor (<type> <name>) or give a reading (<time> <value>).
 
-`reference 70.0 45.0 6
+reference 70.0 45.0 6
 thermometer temp-1
 2007-04-05T22:00 72.4
 2007-04-05T22:01 76.0
@@ -52,7 +52,7 @@ monoxide mon-2
 2007-04-05T22:05 4
 2007-04-05T22:06 10
 2007-04-05T22:07 8
-2007-04-05T22:08 6`
+2007-04-05T22:08 6
 
 Sample Output { "temp-1": "precise", "temp-2": "ultra precise", "hum-1": "keep", "hum-2": "discard", "mon-1": "keep", "mon-2": "discard" }
 

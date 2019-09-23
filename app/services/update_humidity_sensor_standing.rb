@@ -26,7 +26,7 @@ class UpdateHumiditySensorStanding < ApplicationService
   def update_sensor_standing!
     if discard_sensor?
       standings_of_sensors[sensor.name] = 'discard'
-    elsif minimum_sensor_standing_number(QUALITY_LEVELS) == 0
+    elsif minimum_sensor_standing_number(QUALITY_LEVELS, standings_of_sensors) == 0
       standings_of_sensors[sensor.name] = 'keep'
     end
   end

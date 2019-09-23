@@ -1,4 +1,6 @@
 class UpdateHumiditySensorStanding < ApplicationService
+  include StandingNumbers
+
   pattr_initialize  :sensor,
                     :sensor_measurements,
                     :reference_value,
@@ -11,6 +13,11 @@ class UpdateHumiditySensorStanding < ApplicationService
 
   private
 
+  QUALITY_LEVELS = {
+    0 => 'keep',
+    1 => 'discard'
+  }
+
   def normalize_inputs!
     sensor_measurements.map!(&:to_f)
     @reference_value = reference_value.to_f
@@ -19,8 +26,8 @@ class UpdateHumiditySensorStanding < ApplicationService
   def update_sensor_standing!
     if discard_sensor?
       standings_of_sensors[sensor.name] = 'discard'
-    else
-      standings_of_sensors[sensor.name] = 'keep' unless standings_of_sensors[sensor.name] == 'discard'
+    elsif minimum_sensor_standing_number(QUALITY_LEVELS) == 0
+      standings_of_sensors[sensor.name] = 'keep'
     end
   end
 

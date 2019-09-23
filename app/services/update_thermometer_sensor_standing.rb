@@ -1,4 +1,6 @@
 class UpdateThermometerSensorStanding < ApplicationService
+  include StandingNumbers
+
   pattr_initialize  :sensor,
                     :sensor_measurements,
                     :reference_value,
@@ -6,8 +8,7 @@ class UpdateThermometerSensorStanding < ApplicationService
 
   def call
     normalize_inputs!
-    minimum_standing_number = current_sensor_standing_number || 0
-    update_sensor_standing!(minimum_standing_number)
+    update_sensor_standing!
   end
 
   private
@@ -23,23 +24,17 @@ class UpdateThermometerSensorStanding < ApplicationService
     @reference_value = reference_value.to_f
   end
 
-  def update_sensor_standing!(previous_sensor_standing_number)
-    standings_of_sensors[sensor.name] = if previous_sensor_standing_number == 0 &&
+  def update_sensor_standing!
+    standings_of_sensors[sensor.name] = if minimum_sensor_standing_number(QUALITY_LEVELS) == 0 &&
         mean <= 0.5 &&
         maximum_deviation < 3.0
       QUALITY_LEVELS[0]
-    elsif previous_sensor_standing_number <= 1 &&
+    elsif minimum_sensor_standing_number(QUALITY_LEVELS) <= 1 &&
         mean <= 0.5 && maximum_deviation <= 5.0
       QUALITY_LEVELS[1]
     else
       QUALITY_LEVELS[2]
     end
-  end
-
-  def current_sensor_standing_number
-    @sensor_standing_number ||= QUALITY_LEVELS.find do |level, level_name|
-      standings_of_sensors[sensor.name] == level_name
-    end&.first
   end
 
   def mean

@@ -1,7 +1,7 @@
 class UpdateHumiditySensorStanding < ApplicationService
   pattr_initialize  :sensor,
                     :sensor_measurements,
-                    :reference_humidity,
+                    :reference_value,
                     :standings_of_sensors
 
   def call
@@ -13,7 +13,7 @@ class UpdateHumiditySensorStanding < ApplicationService
 
   def normalize_inputs!
     sensor_measurements.map!(&:to_f)
-    @reference_humidity = reference_humidity.to_f
+    @reference_value = reference_value.to_f
   end
 
   def update_sensor_standing!
@@ -31,14 +31,14 @@ class UpdateHumiditySensorStanding < ApplicationService
   end
 
   def max_accepted_value
-    @max_accepted_value ||= reference_humidity + acceptable_difference
+    @max_accepted_value ||= reference_value + acceptable_difference
   end
 
   def min_accepted_value
-    @min_accepted_value ||= reference_humidity - acceptable_difference
+    @min_accepted_value ||= reference_value - acceptable_difference
   end
 
   def acceptable_difference
-    @acceptable_difference ||= reference_humidity * 0.01
+    @acceptable_difference ||= reference_value * 0.01
   end
 end

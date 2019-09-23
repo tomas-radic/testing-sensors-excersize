@@ -5,13 +5,13 @@ describe UpdateMonoxideSensorStanding do
     described_class.call(
       sensor,
       sensor_measurements,
-      reference_ppm,
+      reference_value,
       standings_of_sensors
     )
   end
 
   let!(:sensor) { OpenStruct.new(type: 'monoxide', name: 'mon-1') }
-  let!(:reference_ppm) { 10 }
+  let!(:reference_value) { 10 }
   let!(:standings_of_sensors) do
     {}
   end

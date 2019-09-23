@@ -1,7 +1,7 @@
 class UpdateMonoxideSensorStanding < ApplicationService
   pattr_initialize  :sensor,
                     :sensor_measurements,
-                    :reference_ppm,
+                    :reference_value,
                     :standings_of_sensors
 
   def call
@@ -15,7 +15,7 @@ class UpdateMonoxideSensorStanding < ApplicationService
 
   def normalize_inputs!
     sensor_measurements.map!(&:to_i)
-    @reference_ppm = reference_ppm.to_i
+    @reference_value = reference_value.to_i
   end
 
   def update_sensor_standing!
@@ -33,10 +33,10 @@ class UpdateMonoxideSensorStanding < ApplicationService
   end
 
   def max_accepted_value
-    @max_accepted_value ||= reference_ppm + ACCEPTABLE_DIFFERENCE
+    @max_accepted_value ||= reference_value + ACCEPTABLE_DIFFERENCE
   end
 
   def min_accepted_value
-    @min_accepted_value ||= reference_ppm - ACCEPTABLE_DIFFERENCE
+    @min_accepted_value ||= reference_value - ACCEPTABLE_DIFFERENCE
   end
 end

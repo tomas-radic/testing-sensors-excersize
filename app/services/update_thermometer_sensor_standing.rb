@@ -1,7 +1,7 @@
-class UpdateTemperatureSensorStanding < ApplicationService
+class UpdateThermometerSensorStanding < ApplicationService
   pattr_initialize  :sensor,
                     :sensor_measurements,
-                    :reference_temperature,
+                    :reference_value,
                     :standings_of_sensors
 
   def call
@@ -20,7 +20,7 @@ class UpdateTemperatureSensorStanding < ApplicationService
 
   def normalize_inputs!
     sensor_measurements.map!(&:to_f)
-    @reference_temperature = reference_temperature.to_f
+    @reference_value = reference_value.to_f
   end
 
   def update_sensor_standing!(previous_sensor_standing_number)
@@ -43,7 +43,7 @@ class UpdateTemperatureSensorStanding < ApplicationService
   end
 
   def mean
-    @mean ||= (statistics[:average] - reference_temperature).abs
+    @mean ||= (statistics[:average] - reference_value).abs
   end
 
   def maximum_deviation

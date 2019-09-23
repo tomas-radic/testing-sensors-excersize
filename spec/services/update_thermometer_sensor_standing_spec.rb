@@ -1,18 +1,18 @@
 require 'rails_helper'
 
-describe UpdateTemperatureSensorStanding do
+describe UpdateThermometerSensorStanding do
   subject(:service) do
     described_class.call(
       sensor,
       sensor_measurements,
-      reference_temperature,
+      reference_value,
       standings_of_sensors
     )
   end
 
   let!(:sensor) { OpenStruct.new(type: 'thermometer', name: 'therm-1') }
   let!(:sensor_measurements) { [] }
-  let!(:reference_temperature) { 25.8 }
+  let!(:reference_value) { 25.8 }
   let!(:standings_of_sensors) do
     {}
   end

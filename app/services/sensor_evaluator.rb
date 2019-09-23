@@ -57,11 +57,11 @@ class SensorEvaluator
     values.each.with_index do |value, index|
       case index
       when 0
-        reference_values[:temperature] = value
+        reference_values[:thermometer] = value
       when 1
         reference_values[:humidity] = value
       when 2
-        reference_values[:ppm] = value
+        reference_values[:monoxide] = value
       end
     end
   end

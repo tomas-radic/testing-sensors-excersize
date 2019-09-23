@@ -14,9 +14,9 @@ describe UpdateSensorStanding do
 
   let!(:reference_values) do
     {
-      temperature: 25.7,
+      thermometer: 25.7,
       humidity: 58.3,
-      ppm: 4
+      monoxide: 4
     }
   end
 
@@ -24,15 +24,15 @@ describe UpdateSensorStanding do
     {}
   end
 
-  context 'With temperature sensor' do
+  context 'With thermometer sensor' do
     let!(:sensor) { OpenStruct.new(type: 'thermometer', name: 'therm-1') }
 
     it 'Calls specific updater' do
-      expect(UpdateTemperatureSensorStanding).to receive(:call)
+      expect(UpdateThermometerSensorStanding).to receive(:call)
           .with(
             sensor,
             sensor_measurements,
-            reference_values[:temperature],
+            reference_values[:thermometer],
             standings_of_sensors
           )
 
@@ -64,7 +64,7 @@ describe UpdateSensorStanding do
           .with(
             sensor,
             sensor_measurements,
-            reference_values[:ppm],
+            reference_values[:monoxide],
             standings_of_sensors
           )
 
